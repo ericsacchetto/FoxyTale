@@ -1,0 +1,60 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+
+    public static AudioManager instance;
+
+    public AudioSource[] soundEffects;
+
+    public AudioSource backgroundMusic;
+    public AudioSource levelEndMusic;
+    public AudioSource bossMusic;
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void PlaySFX(int soundToPlay)
+    {
+        soundEffects[soundToPlay].Stop();
+
+        soundEffects[soundToPlay].pitch = Random.Range(.8f, 1.1f);
+
+        soundEffects[soundToPlay].Play();
+    }
+
+    public void PlayLevelVictory()
+    {
+        backgroundMusic.Stop();
+        levelEndMusic.Play();
+    }
+
+    public void PlayBossMusic()
+    {
+        backgroundMusic.Stop();
+        bossMusic.Play();
+    }
+
+    public void StopBossMusic()
+    {
+        bossMusic.Stop();
+        backgroundMusic.Play();
+    }
+}
